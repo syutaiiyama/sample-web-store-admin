@@ -8,7 +8,7 @@ import { MuiModal } from "../../../components/Modal/MuiModal";
 import { ProductModal } from "../../../container/Modal/ProductModal";
 
 export default function BookPage(): JSX.Element {
-  const { books, fetchProducts } = useProducts();
+  const { books, fetchProducts, updateProduct } = useProducts();
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState<boolean>(
     false
   );
@@ -30,8 +30,8 @@ export default function BookPage(): JSX.Element {
     setIsConfirmDialogOpen(false);
   }, [selectedProduct]);
 
-  const handleUpdate = useCallback((product: TProduct) => {
-    //TODO: await updateProduct(product);
+  const handleUpdate = useCallback(async (product: TProduct) => {
+    await updateProduct(product);
     setIsProductModalOpen(false);
   }, []);
 

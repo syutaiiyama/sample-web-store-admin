@@ -4,6 +4,7 @@ import { productOperations } from "./products.operations";
 
 type ContextProps = {
   fetchProducts: () => void;
+  updateProduct: (product: TProduct) => void;
   products: Array<TProduct>;
   books: Array<TProduct>;
   clothes: Array<TProduct>;
