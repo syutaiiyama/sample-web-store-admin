@@ -2,10 +2,8 @@ import { TUser } from "../../contexts/user/user.type";
 
 export const testUser: TUser = {
   isAuthenticated: true,
-  profile: {
-    name: "飯山秀太",
-    email: "shuta.iiyama@star.rcast.u-tokyo.ac.jp",
-  },
+  name: "飯山秀太",
+  email: "shuta.iiyama@star.rcast.u-tokyo.ac.jp",
   address: {
     postalCode: "111-1111",
     prefecture: "埼玉県",
