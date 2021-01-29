@@ -53,6 +53,8 @@ const AppLayout: React.FC = ({ children }) => {
   const classes = useStyles();
   const router = useRouter();
 
+  console.log(router.pathname);
+
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
@@ -78,9 +80,25 @@ const AppLayout: React.FC = ({ children }) => {
               onClick={() => router.push("/products/books")}
             >
               <ListItemIcon>
-                <MenuBook />
+                <MenuBook
+                  color={
+                    router.pathname === "/products/books"
+                      ? "primary"
+                      : undefined
+                  }
+                />
               </ListItemIcon>
-              <ListItemText primary="book" />
+              <ListItemText>
+                <Typography
+                  color={
+                    router.pathname === "/products/books"
+                      ? "primary"
+                      : undefined
+                  }
+                >
+                  book
+                </Typography>
+              </ListItemText>
             </ListItem>
             <ListItem
               button
@@ -88,9 +106,25 @@ const AppLayout: React.FC = ({ children }) => {
               onClick={() => router.push("/products/clothes")}
             >
               <ListItemIcon>
-                <WorkSharp />
+                <WorkSharp
+                  color={
+                    router.pathname === "/products/clothes"
+                      ? "primary"
+                      : undefined
+                  }
+                />
               </ListItemIcon>
-              <ListItemText primary="clothes" />
+              <ListItemText>
+                <Typography
+                  color={
+                    router.pathname === "/products/clothes"
+                      ? "primary"
+                      : undefined
+                  }
+                >
+                  clothes
+                </Typography>
+              </ListItemText>
             </ListItem>
             <ListItem
               button
@@ -98,24 +132,56 @@ const AppLayout: React.FC = ({ children }) => {
               onClick={() => router.push("/products/foods")}
             >
               <ListItemIcon>
-                <Fastfood />
+                <Fastfood
+                  color={
+                    router.pathname === "/products/foods"
+                      ? "primary"
+                      : undefined
+                  }
+                />
               </ListItemIcon>
-              <ListItemText primary="food" />
+              <ListItemText>
+                <Typography
+                  color={
+                    router.pathname === "/products/foods"
+                      ? "primary"
+                      : undefined
+                  }
+                >
+                  food
+                </Typography>
+              </ListItemText>
             </ListItem>
           </List>
           <Divider />
           <List>
             <ListItem button key="user" onClick={() => router.push("/users")}>
               <ListItemIcon>
-                <AccountBox />
+                <AccountBox
+                  color={router.pathname === "/users" ? "primary" : undefined}
+                />
               </ListItemIcon>
-              <ListItemText primary="user" />
+              <ListItemText>
+                <Typography
+                  color={router.pathname === "/users" ? "primary" : undefined}
+                >
+                  user
+                </Typography>
+              </ListItemText>
             </ListItem>
             <ListItem button key="order" onClick={() => router.push("/orders")}>
               <ListItemIcon>
-                <Toc />
+                <Toc
+                  color={router.pathname === "/orders" ? "primary" : undefined}
+                />
               </ListItemIcon>
-              <ListItemText primary="order" />
+              <ListItemText>
+                <Typography
+                  color={router.pathname === "/orders" ? "primary" : undefined}
+                >
+                  order
+                </Typography>
+              </ListItemText>
             </ListItem>
           </List>
         </div>
