@@ -1,32 +1,50 @@
 import React, { useCallback, useState } from "react";
-import { TProduct } from "../../contexts/products/products.type";
+import {
+  TCreateProductRequest,
+  TProduct,
+} from "../../contexts/products/products.type";
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import Image from "next/image";
 import styles from "./ProductModal.module.css";
 import { generateTestImageUrl } from "../../utils/generateTestImageUrl";
 
 type ProductModalPropd = {
-  product: TProduct;
-  handleSubmit: (product: TProduct) => void;
+  product?: TProduct;
+  pageCategory: string;
+  handleUpdate: (product: TProduct) => void;
+  handleCreate: (product: TCreateProductRequest) => void;
 };
 
 export const ProductModal: React.FC<ProductModalPropd> = ({
   product,
-  handleSubmit,
+  pageCategory,
+  handleUpdate,
+  handleCreate,
 }) => {
-  const [name, setName] = useState<string>(product.name);
-  const [price, setPrice] = useState<number>(product.price);
-  const [description, setDescription] = useState<string>(product.description);
+  const [name, setName] = useState<string>(product?.name);
+  const [price, setPrice] = useState<number>(product?.price);
+  const [description, setDescription] = useState<string>(product?.description);
 
   const handleSaveButtonClick = useCallback(() => {
-    const updatedProduct: TProduct = {
-      id: product.id,
-      imageUrl: product.imageUrl,
-      name: name,
-      price: price,
-      description: description,
-    };
-    handleSubmit(updatedProduct);
+    if (product) {
+      const updatedProduct: TProduct = {
+        id: product.id,
+        imageUrl: product.imageUrl,
+        name: name,
+        price: price,
+        description: description,
+      };
+      handleUpdate(updatedProduct);
+    } else {
+      const createProduct: TCreateProductRequest = {
+        imageUrl: "",
+        category: pageCategory,
+        name: name,
+        price: price,
+        description: description,
+      };
+      handleCreate(createProduct);
+    }
   }, [product, name, price, description]);
 
   return (
@@ -36,7 +54,7 @@ export const ProductModal: React.FC<ProductModalPropd> = ({
           <Grid item>商品画像</Grid>
           <Grid item style={{ textAlign: "center" }}>
             <Image
-              src={generateTestImageUrl(product)}
+              src={generateTestImageUrl(pageCategory)}
               width={300}
               height={300}
               layout={"intrinsic"}

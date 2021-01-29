@@ -46,7 +46,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
             <TableRow key={index}>
               <TableCell component="th" scope="row">
                 <Image
-                  src={generateTestImageUrl(product)}
+                  src={generateTestImageUrl(product.category)}
                   width={300}
                   height={300}
                   layout={"intrinsic"}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TProduct } from "./products.type";
+import { TCreateProductRequest, TProduct } from "./products.type";
 import { apiClient } from "../../infrastructure/apiClient/apiClient";
 import { useLoadingModal } from "../loading/loading.context";
 
@@ -27,6 +27,19 @@ export const productOperations = () => {
       setBooks(bookData);
       setClothes(clotheData);
       setFoods(foodData);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      closeLoadingModal();
+    }
+  };
+
+  const postProduct = async (product: TCreateProductRequest) => {
+    openLoadingModal("商品情報を更新しています...");
+    try {
+      const idToken = await apiClient.auth.getIdToken();
+      await apiClient.post.products(product, idToken);
+      await fetchProducts();
     } catch (e) {
       console.log(e);
     } finally {
@@ -62,6 +75,7 @@ export const productOperations = () => {
 
   return {
     fetchProducts,
+    postProduct,
     updateProduct,
     deleteProduct,
     products,

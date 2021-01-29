@@ -1,9 +1,10 @@
-import { TProduct } from "./products.type";
+import { TCreateProductRequest, TProduct } from "./products.type";
 import React, { createContext, useContext } from "react";
 import { productOperations } from "./products.operations";
 
 type ContextProps = {
   fetchProducts: () => void;
+  postProduct: (product: TCreateProductRequest) => void;
   updateProduct: (product: TProduct) => void;
   deleteProduct: (product: TProduct) => void;
   products: Array<TProduct>;

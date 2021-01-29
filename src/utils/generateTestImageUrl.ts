@@ -1,12 +1,10 @@
-import { TProduct } from "../contexts/products/products.type";
-
-export const generateTestImageUrl = (product: TProduct) => {
+export const generateTestImageUrl = (category: string) => {
   let imageUrl;
 
   // バックエンドがGCSに繋がっていないのでimageUrlはハードコーディング
-  if (product.category === "book") {
+  if (category === "book") {
     imageUrl = "/images/book_product2.png";
-  } else if (product.category === "clothe") {
+  } else if (category === "clothe") {
     imageUrl = "/images/clothe_product2.png";
   } else {
     imageUrl = "/images/food_product2.png";

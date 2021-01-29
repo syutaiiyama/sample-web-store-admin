@@ -1,14 +1,23 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import ProductTable from "../../../components/Table/ProductTable";
 import { useProducts } from "../../../contexts/products/products.context";
-import { TProduct } from "../../../contexts/products/products.type";
+import {
+  TCreateProductRequest,
+  TProduct,
+} from "../../../contexts/products/products.type";
 import ConfirmDialog from "../../../components/ConfirmDialog/ConfirmDialog";
 import { MuiModal } from "../../../components/Modal/MuiModal";
 import { ProductModal } from "../../../container/Modal/ProductModal";
 
 export default function FoodPage(): JSX.Element {
-  const { foods, fetchProducts } = useProducts();
+  const {
+    foods,
+    fetchProducts,
+    postProduct,
+    updateProduct,
+    deleteProduct,
+  } = useProducts();
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState<boolean>(
     false
   );
@@ -26,13 +35,28 @@ export default function FoodPage(): JSX.Element {
   }, []);
 
   const handleConfirmDelete = useCallback(async () => {
-    // TODO: await deleteProduct(selectedProduct);
+    await deleteProduct(selectedProduct);
     setIsConfirmDialogOpen(false);
+    await fetchProducts();
   }, [selectedProduct]);
 
-  const handleUpdate = useCallback((product: TProduct) => {
-    //TODO: await updateProduct(product);
+  const handleCreateNewProduct = useCallback(
+    async (product: TCreateProductRequest) => {
+      await postProduct(product);
+      setIsProductModalOpen(false);
+      await fetchProducts();
+    },
+    []
+  );
+
+  const handleUpdate = useCallback(async (product: TProduct) => {
+    await updateProduct(product);
     setIsProductModalOpen(false);
+  }, []);
+
+  const handleAddButton = useCallback(() => {
+    setSelectedProduct(null);
+    setIsProductModalOpen(true);
   }, []);
 
   useEffect(() => {
@@ -41,7 +65,22 @@ export default function FoodPage(): JSX.Element {
 
   return (
     <div>
-      <Typography variant="h4">Food</Typography>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography variant="h4">Food</Typography>
+        <Button
+          color={"primary"}
+          variant={"contained"}
+          onClick={() => handleAddButton()}
+        >
+          新規追加
+        </Button>
+      </div>
       <div style={{ height: "40px" }} />
       <ProductTable
         products={foods}
@@ -60,7 +99,12 @@ export default function FoodPage(): JSX.Element {
         isModalOpen={isProductModalOpen}
         onClose={() => setIsProductModalOpen(false)}
       >
-        <ProductModal product={selectedProduct} handleSubmit={handleUpdate} />
+        <ProductModal
+          product={selectedProduct}
+          handleCreate={handleCreateNewProduct}
+          handleUpdate={handleUpdate}
+          pageCategory={"food"}
+        />
       </MuiModal>
     </div>
   );
