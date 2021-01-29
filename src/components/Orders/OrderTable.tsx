@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
+import { convertDateFromString } from "../../utils/converDate";
 
 type OrderTableProps = {
   orders: Array<TOrder>;
@@ -32,11 +33,18 @@ const OrderTable: React.FC<OrderTableProps> = ({ orders }) => {
         <TableBody>
           {orders.map((order, index) => (
             <TableRow key={index}>
-              <TableCell component="th" scope="row"></TableCell>
-              <TableCell align="center"></TableCell>
-              <TableCell align="left"></TableCell>
-              <TableCell align="left"></TableCell>
-              <TableCell align="left"></TableCell>
+              <TableCell align="left">{order.orderNo}</TableCell>
+              <TableCell align="left">{order.user.name}</TableCell>
+              <TableCell align="left">
+                {convertDateFromString(order.date)}
+              </TableCell>
+              <TableCell align="left">
+                〒{order.user.address.postalCode}{" "}
+                {order.user.address.prefecture} {order.user.address.city}{" "}
+                {order.user.address.addressLine} {order.user.address.building}{" "}
+                {order.user.address.tel}
+              </TableCell>
+              <TableCell align="left">{order.payment.total}円</TableCell>
               <TableCell align="right">
                 <Button color={"primary"} variant={"contained"}>
                   詳細
