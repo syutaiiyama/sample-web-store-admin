@@ -8,7 +8,7 @@ import { MuiModal } from "../../../components/Modal/MuiModal";
 import { ProductModal } from "../../../container/Modal/ProductModal";
 
 export default function BookPage(): JSX.Element {
-  const { books, fetchProducts, updateProduct } = useProducts();
+  const { books, fetchProducts, updateProduct, deleteProduct } = useProducts();
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState<boolean>(
     false
   );
@@ -26,8 +26,9 @@ export default function BookPage(): JSX.Element {
   }, []);
 
   const handleConfirmDelete = useCallback(async () => {
-    // TODO: await deleteProduct(selectedProduct);
+    await deleteProduct(selectedProduct);
     setIsConfirmDialogOpen(false);
+    await fetchProducts();
   }, [selectedProduct]);
 
   const handleUpdate = useCallback(async (product: TProduct) => {

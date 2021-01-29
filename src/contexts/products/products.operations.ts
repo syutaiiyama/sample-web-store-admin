@@ -47,9 +47,23 @@ export const productOperations = () => {
     }
   };
 
+  const deleteProduct = async (product: TProduct) => {
+    openLoadingModal("商品情報を更新しています...");
+    try {
+      const idToken = await apiClient.auth.getIdToken();
+      await apiClient.delete.products(product, idToken);
+      await fetchProducts();
+    } catch (e) {
+      console.log(e);
+    } finally {
+      closeLoadingModal();
+    }
+  };
+
   return {
     fetchProducts,
     updateProduct,
+    deleteProduct,
     products,
     books,
     clothes,
