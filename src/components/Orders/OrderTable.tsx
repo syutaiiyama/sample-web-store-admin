@@ -14,9 +14,13 @@ import { convertDateFromString } from "../../utils/converDate";
 
 type OrderTableProps = {
   orders: Array<TOrder>;
+  detailButtonClick: (order: TOrder) => void;
 };
 
-const OrderTable: React.FC<OrderTableProps> = ({ orders }) => {
+const OrderTable: React.FC<OrderTableProps> = ({
+  orders,
+  detailButtonClick,
+}) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -46,7 +50,11 @@ const OrderTable: React.FC<OrderTableProps> = ({ orders }) => {
               </TableCell>
               <TableCell align="left">{order.payment.total}円</TableCell>
               <TableCell align="right">
-                <Button color={"primary"} variant={"contained"}>
+                <Button
+                  color={"primary"}
+                  variant={"contained"}
+                  onClick={() => detailButtonClick(order)}
+                >
                   詳細
                 </Button>
               </TableCell>
