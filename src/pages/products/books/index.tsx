@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Typography } from "@material-ui/core";
-import ProductTable from "../../../components/products/ProductTable";
+import ProductTable from "../../../components/Table/ProductTable";
 import { useProducts } from "../../../contexts/products/products.context";
 import ConfirmDialog from "../../../components/ConfirmDialog/ConfirmDialog";
 import { TProduct } from "../../../contexts/products/products.type";

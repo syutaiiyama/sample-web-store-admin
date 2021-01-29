@@ -1,13 +1,9 @@
 export type TUser = {
   isAuthenticated: boolean;
-  profile: TProfile;
-  address: TAddress;
-  card: TCreditCard;
-};
-
-export type TProfile = {
   name: string;
   email: string;
+  address: TAddress;
+  card: TCreditCard;
 };
 
 export type TAddress = {

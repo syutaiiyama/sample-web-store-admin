@@ -105,7 +105,7 @@ const AppLayout: React.FC = ({ children }) => {
           </List>
           <Divider />
           <List>
-            <ListItem button key="user">
+            <ListItem button key="user" onClick={() => router.push("/users")}>
               <ListItemIcon>
                 <AccountBox />
               </ListItemIcon>
