@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@material-ui/core";
 import { TProduct } from "../../contexts/products/products.type";
 import Image from "next/image";
@@ -30,10 +31,10 @@ const ProductTable: React.FC<ProductTableProps> = ({
         <TableHead>
           <TableRow>
             <TableCell style={{ minWidth: "100px" }}>商品画像</TableCell>
-            <TableCell align="left" style={{ minWidth: "300px" }}>
+            <TableCell align="left" style={{ minWidth: "150px" }}>
               商品名
             </TableCell>
-            <TableCell align={"left"} style={{ minWidth: "150px" }}>
+            <TableCell align={"left"} style={{ minWidth: "100px" }}>
               金額
             </TableCell>
             <TableCell align="left">説明</TableCell>
@@ -54,7 +55,19 @@ const ProductTable: React.FC<ProductTableProps> = ({
               </TableCell>
               <TableCell align="center">{product.name}</TableCell>
               <TableCell align="left">{product.price}円</TableCell>
-              <TableCell align="left">{product.description}</TableCell>
+              <TableCell align="left">
+                <Typography
+                  style={{
+                    overflow: "hidden",
+                    display: "-webkit-box",
+                    textOverflow: "ellipsis",
+                    WebkitLineClamp: 5,
+                    WebkitBoxOrient: "vertical",
+                  }}
+                >
+                  {product.description}
+                </Typography>
+              </TableCell>
               <TableCell align="right">
                 <Button
                   color={"primary"}
