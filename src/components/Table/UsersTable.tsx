@@ -9,6 +9,7 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
+import * as faker from "faker";
 
 type UsersTableProps = {
   users: Array<TUser>;
@@ -32,12 +33,21 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
         <TableBody>
           {users.map((user, index) => (
             <TableRow key={index}>
-              <TableCell align="left">{user.name}</TableCell>
-              <TableCell align="left">{user.email}</TableCell>
               <TableCell align="left">
-                〒{user.address.postalCode} {user.address.prefecture}{" "}
-                {user.address.city} {user.address.addressLine}{" "}
-                {user.address.building} {user.address.tel}
+                {/*{user.name}*/}
+                {faker.name.lastName()}
+                {faker.name.firstName()}
+              </TableCell>
+              <TableCell align="left">
+                {/*{user.email}*/}
+                demo@demo.jp
+              </TableCell>
+              <TableCell align="left">
+                {/*〒{user.address.postalCode} {user.address.prefecture}{" "}*/}
+                {/*{user.address.city} {user.address.addressLine}{" "}*/}
+                {/*{user.address.building} {user.address.tel}*/}〒
+                {faker.address.zipCode()} {faker.address.state()}{" "}
+                {"でも市デモ町1-111-111"} {faker.phone.phoneNumber()}
               </TableCell>
             </TableRow>
           ))}
