@@ -35,8 +35,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
             <TableRow key={index}>
               <TableCell align="left">
                 {/*{user.name}*/}
-                {faker.name.lastName()}
-                {faker.name.firstName()}
+                田中太郎
               </TableCell>
               <TableCell align="left">
                 {/*{user.email}*/}
@@ -45,9 +44,8 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
               <TableCell align="left">
                 {/*〒{user.address.postalCode} {user.address.prefecture}{" "}*/}
                 {/*{user.address.city} {user.address.addressLine}{" "}*/}
-                {/*{user.address.building} {user.address.tel}*/}〒
-                {faker.address.zipCode()} {faker.address.state()}{" "}
-                {"でも市デモ町1-111-111"} {faker.phone.phoneNumber()}
+                {/*{user.address.building} {user.address.tel}*/}
+                〒111-111 でも県デモ市でも町1-111-111
               </TableCell>
             </TableRow>
           ))}

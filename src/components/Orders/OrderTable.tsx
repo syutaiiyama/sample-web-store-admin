@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@material-ui/core";
 import { convertDateFromString } from "../../utils/converDate";
+import * as faker from "faker";
 
 type OrderTableProps = {
   orders: Array<TOrder>;
@@ -38,15 +39,19 @@ const OrderTable: React.FC<OrderTableProps> = ({
           {orders.map((order, index) => (
             <TableRow key={index}>
               <TableCell align="left">{order.orderNo}</TableCell>
-              <TableCell align="left">{order.user.name}</TableCell>
+              <TableCell align="left">
+                {/*{order.user.name}*/}
+                田中太郎
+              </TableCell>
               <TableCell align="left">
                 {convertDateFromString(order.date)}
               </TableCell>
               <TableCell align="left">
-                〒{order.user.address.postalCode}{" "}
-                {order.user.address.prefecture} {order.user.address.city}{" "}
-                {order.user.address.addressLine} {order.user.address.building}{" "}
-                {order.user.address.tel}
+                {/*〒{order.user.address.postalCode}{" "}*/}
+                {/*{order.user.address.prefecture} {order.user.address.city}{" "}*/}
+                {/*{order.user.address.addressLine} {order.user.address.building}{" "}*/}
+                {/*{order.user.address.tel}*/}
+                〒111-111 でも県デモ市でも町1-111-111
               </TableCell>
               <TableCell align="left">{order.payment.total}円</TableCell>
               <TableCell align="right">

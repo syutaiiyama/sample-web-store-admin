@@ -5,6 +5,7 @@ import OrderDetailLabel from "./OrderDetailLabel";
 import { convertDateFromString } from "../../utils/converDate";
 import styles from "../../container/Modal/ProductModal.module.css";
 import { OrderListTable } from "../Table/OrderListTable";
+import * as faker from "faker";
 
 type OrderModalProps = {
   order: TOrder;
@@ -45,14 +46,15 @@ export const OrderModal: React.FC<OrderModalProps> = ({ order }) => {
           }}
         >
           <Typography variant={"h6"}>注文者情報</Typography>
-          <OrderDetailLabel label={"名前"} value={order.user.name} />
-          <OrderDetailLabel label={"メールアドレス"} value={order.user.email} />
+          <OrderDetailLabel label={"名前"} value={"田中太郎"} />
+          <OrderDetailLabel label={"メールアドレス"} value={"demo@demo.jp"} />
           <div style={{ marginTop: "10px", marginBottom: "10px" }}>
             <Typography>
-              住所{": \t"}〒{order.user.address.postalCode}{" "}
-              {order.user.address.prefecture} {order.user.address.city}{" "}
-              {order.user.address.addressLine} {order.user.address.building}{" "}
-              {order.user.address.tel}
+              {/*住所{": \t"}〒{order.user.address.postalCode}{" "}*/}
+              {/*{order.user.address.prefecture} {order.user.address.city}{" "}*/}
+              {/*{order.user.address.addressLine} {order.user.address.building}{" "}*/}
+              {/*{order.user.address.tel}*/}
+              住所: 〒111-111 でも県デモ市でも町1-111-111
             </Typography>
           </div>
         </Grid>
